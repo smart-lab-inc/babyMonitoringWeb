@@ -3,7 +3,7 @@ import Alert from "./Alert";
 export default {
   title: "Alert",
   component: Alert,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 }
 
 export const Success = {

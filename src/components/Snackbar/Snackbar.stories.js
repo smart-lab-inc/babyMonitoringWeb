@@ -3,7 +3,7 @@ import Snackbar from "./Snackbar"
 export default {
   title: "Snackbar",
   component: Snackbar,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 }
 
 export const Success = {
