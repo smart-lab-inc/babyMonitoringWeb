@@ -1,6 +1,6 @@
-import SuccessSVG from '../assets/svg/success.svg';
-import ErrorSVG from '../assets/svg/error.svg';
-import WarningSVG from '../assets/svg/warning.svg';
+import SuccessSVG from "../assets/svg/success.svg";
+import ErrorSVG from "../assets/svg/error.svg";
+import WarningSVG from "../assets/svg/warning.svg";
 
 export default {
   "success": SuccessSVG,
