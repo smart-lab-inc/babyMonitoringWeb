@@ -1,16 +1,16 @@
 import "../../index.css";
+import BackgroundColors from "../../consts/BackgroundColors";
 
 const Button = ({ icon, primary, label, size }) => {
-  const mode = primary ? "bg-blue-600" : "bg-slate-800";
+  const mode = primary ? BackgroundColors.primary : BackgroundColors.secondary;
+  const classes = [
+    mode,
+    size,
+    "rounded text-center flex justify-center items-center text-white py-2 px-7",
+  ].join(" ");
   return (
-    <button
-      className={[
-        mode,
-        size,
-        "rounded text-center flex justify-center items-center text-white py-2 px-7",
-      ].join(" ")}
-    >
-      {icon ? <img src={icon} alt={label} className="mr-2 h-5" /> : null}
+    <button className={classes}>
+      {icon && <img src={icon} alt={label} className="mr-2 h-5" />}
       {label}
     </button>
   );
