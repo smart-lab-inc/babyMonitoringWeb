@@ -9,6 +9,7 @@ export default {
 export const Input = {
   args: {
     type: "text",
+    label: "Label",
     multiline: false,
     name: null,
     value: null,
@@ -24,6 +25,7 @@ export const Input = {
 export const InputDisabled = {
   args: {
     type: "text",
+    label: "Label",
     multiline: false,
     name: null,
     value: null,
@@ -39,6 +41,7 @@ export const InputDisabled = {
 export const InputError = {
   args: {
     type: "text",
+    label: "Label",
     multiline: false,
     name: null,
     value: null,
@@ -54,6 +57,7 @@ export const InputError = {
 export const Multiline = {
   args: {
     type: "text",
+    label: "Label",
     multiline: true,
     name: null,
     value: null,
@@ -69,6 +73,7 @@ export const Multiline = {
 export const MultilineDisabled = {
   args: {
     type: "text",
+    label: "Label",
     multiline: true,
     name: null,
     value: null,
@@ -83,6 +88,7 @@ export const MultilineDisabled = {
 export const MultilineError = {
   args: {
     type: "text",
+    label: "Label",
     multiline: true,
     name: null,
     value: null,
