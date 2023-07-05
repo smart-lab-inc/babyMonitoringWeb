@@ -1,8 +1,8 @@
 import "../../index.css";
-import BackgroundColors from "../../consts/BackgroundColors";
+import Colors from "../../consts/Colors";
 
 const Button = ({ icon, primary, label, size }) => {
-  const mode = primary ? BackgroundColors.primary : BackgroundColors.secondary;
+  const mode = primary ? Colors.background.primary : Colors.background.secondary;
   const classes = [
     mode,
     size,
