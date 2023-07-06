@@ -11,6 +11,7 @@ export const Input = {
     type: "text",
     label: "Label",
     multiline: false,
+    width: "w-1/3",
     name: null,
     value: null,
     placeholder: null,
@@ -18,7 +19,6 @@ export const Input = {
     error: false,
     errorText: null,
     rows: 0,
-    width: "200px",
   },
 }
 
@@ -27,6 +27,7 @@ export const InputDisabled = {
     type: "text",
     label: "Label",
     multiline: false,
+    width: "w-1/3",
     name: null,
     value: null,
     placeholder: null,
@@ -34,7 +35,6 @@ export const InputDisabled = {
     error: false,
     errorText: null,
     rows: 0,
-    width: "200px",
   },
 }
 
@@ -43,6 +43,7 @@ export const InputError = {
     type: "text",
     label: "Label",
     multiline: false,
+    width: "w-1/3",
     name: null,
     value: null,
     placeholder: null,
@@ -50,7 +51,6 @@ export const InputError = {
     error: true,
     errorText: "Error text",
     rows: 0,
-    width: "200px",
   },
 }
 
@@ -59,6 +59,7 @@ export const Multiline = {
     type: "text",
     label: "Label",
     multiline: true,
+    width: "w-1/2",
     name: null,
     value: null,
     placeholder: null,
@@ -66,7 +67,6 @@ export const Multiline = {
     error: false,
     errorText: null,
     rows: 2,
-    width: "200px",
   },
 }
 
@@ -75,6 +75,7 @@ export const MultilineDisabled = {
     type: "text",
     label: "Label",
     multiline: true,
+    width: "w-1/3",
     name: null,
     value: null,
     placeholder: null,
@@ -82,7 +83,6 @@ export const MultilineDisabled = {
     error: false,
     errorText: null,
     rows: 2,
-    width: "200px",
   },
 }
 export const MultilineError = {
@@ -90,6 +90,7 @@ export const MultilineError = {
     type: "text",
     label: "Label",
     multiline: true,
+    width: "w-1/3",
     name: null,
     value: null,
     placeholder: null,
@@ -97,6 +98,5 @@ export const MultilineError = {
     error: true,
     errorText: "Error text",
     rows: 2,
-    width: "200px",
   },
 }
