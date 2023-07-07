@@ -49,7 +49,7 @@ const Login = () => {
                   name="email"
                   type="email"
                   placeholder="Correo Electronico"
-                  width="100%"
+                  width="w-full"
                   value={values.email}
                   handleChange={handleChange}
                   handleBlur={handleBlur}
@@ -65,7 +65,7 @@ const Login = () => {
                   name="password"
                   type="password"
                   placeholder="Contraseña"
-                  width="100%"
+                  width="w-full"
                   value={values.password}
                   handleChange={handleChange}
                   handleBlur={handleBlur}
