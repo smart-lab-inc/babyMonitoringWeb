@@ -18,7 +18,7 @@ const Register = () => {
     email: Yup.string().email("Correo invalido").required("Requerido"),
     phone: Yup.number()
       .typeError("Eso no es un número de teléfono")
-      .positive("No puede iniciar con "-"")
+      .positive("No puede iniciar con " - "")
       .integer("No puede incluir punto decimal")
       .required("Requerido"),
     password: Yup.string().required("Requerido"),
@@ -85,7 +85,7 @@ const Register = () => {
                   <p className="text-red-500 text-sm">{errors.last_name}</p>
                 )}
               </div>
-							<div>
+              <div>
                 <TextField
                   label="Correo electrónico"
                   name="email"
@@ -101,7 +101,7 @@ const Register = () => {
                   <p className="text-red-500 text-sm">{errors.email}</p>
                 )}
               </div>
-							<div>
+              <div>
                 <TextField
                   label="Número de teléfono"
                   name="phone"
@@ -117,7 +117,7 @@ const Register = () => {
                   <p className="text-red-500 text-sm">{errors.phone}</p>
                 )}
               </div>
-							<div>
+              <div>
                 <TextField
                   label="Contraseña"
                   name="password"
