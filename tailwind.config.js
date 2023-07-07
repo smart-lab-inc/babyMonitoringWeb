@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         primary: "Inter",
       },
+      colors: {
+        primary: "#3056D3"
+      },
     },
   },
   plugins: [],

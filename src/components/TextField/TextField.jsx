@@ -14,6 +14,7 @@ const TextField = ({ type, label, name, value, placeholder, disabled, error, err
       <label className="text-sm text-medium text-stone-950" htmlFor={name}>{label}</label>
       {multiline ? (
         <textarea
+          id={name}
           className={textareaClassNames}
           name={name}
           value={value}
@@ -25,6 +26,7 @@ const TextField = ({ type, label, name, value, placeholder, disabled, error, err
         />
       ) : (
         <input
+          id={name}
           className={inputClassNames}
           type={type}
           name={name}

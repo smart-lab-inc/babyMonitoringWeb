@@ -1,6 +1,6 @@
 export default {
     background: {
-        primary: "bg-blue-600",
+        primary: "bg-primary",
         secondary: "bg-slate-800"
     },
 }
