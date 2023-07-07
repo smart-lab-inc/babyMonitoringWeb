@@ -1,7 +1,7 @@
 import "../../index.css";
 import Colors from "../../consts/Colors";
 
-const Button = ({ icon, primary, label, size }) => {
+const Button = ({ type, icon, primary, label, size }) => {
   const mode = primary ? Colors.background.primary : Colors.background.secondary;
   const classes = [
     mode,
@@ -9,7 +9,7 @@ const Button = ({ icon, primary, label, size }) => {
     "rounded text-center flex justify-center items-center text-white py-2 px-7",
   ].join(" ");
   return (
-    <button className={classes}>
+    <button className={classes} type={type}>
       {icon && <img src={icon} alt={label} className="mr-2 h-5" />}
       {label}
     </button>
