@@ -4,7 +4,8 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import Statistics from "./pages/Statistics/Statistics"
+import Statistics from "./pages/Statistics/Statistics";
+
 
 const router = createBrowserRouter([
   {
@@ -21,14 +22,14 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/statistics",
-    element: <Statistics />,
-  },
-  {
     path: "/register",
     element: <Register />,
   },
-]);
+  {
+    path: "/statistics",
+    element: <Statistics />,
+  },
+])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
