@@ -2,7 +2,6 @@ import Button from "../../components/Button/Button";
 
 const videoMonitor = () => {
   return (
-    // center x and y
     <div className="flex font-primary flex-col items-center justify-center h-screen p-4">
       <p className="z-40 text-3xl font-semibold">Monitoreo</p>
 
