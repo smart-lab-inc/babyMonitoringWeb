@@ -2,10 +2,12 @@ import StatisticsCard from "../../components/StatisticsCard/StatisticsCard";
 import BarsChart from "../../components/Charts/BarChart";
 import LinesChart from "../../components/Charts/LineChart";
 import Button from "../../components/Button/Button";
+import NavBar from "../../components/NavBar/NavBar";
 
 const Statistics = () => {
   return (
     <>
+      <NavBar />
       <div className="text-center items-center justify-center h-screen p-4">
         <p className="text-3xl font-semibold m-5">Estadísticas</p>
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 justify-items-center pb-16">
@@ -20,7 +22,7 @@ const Statistics = () => {
             Chart={<LinesChart color={"#EB5757"} />}
             title="HUMEDAD"
           />
-          
+
           <StatisticsCard
             Chart={<LinesChart color={"#F2994A"} />}
             title="AUDIO"
