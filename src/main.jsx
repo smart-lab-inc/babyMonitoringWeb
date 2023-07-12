@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Statistics from "./pages/Statistics/Statistics";
+import VideoMonitor from "./pages/VideoMonitor/VideoMonitor";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     path: "/statistics",
     element: <Statistics />,
   },
+  {
+    path: "/video-monitor",
+    element: <VideoMonitor />,
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
