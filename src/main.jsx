@@ -6,16 +6,12 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Statistics from "./pages/Statistics/Statistics";
 import VideoMonitor from "./pages/VideoMonitor/VideoMonitor";
+import Home from "./pages/Home/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div className="font-primary">
-        <p className="font-semibold">Attention needed</p>
-        <p>Lorem Ipsum</p>
-      </div>
-    ),
+    element: <Home /> ,
   },
   {
     path: "/login",
