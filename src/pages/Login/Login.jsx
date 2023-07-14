@@ -2,8 +2,22 @@ import TextField from "../../components/TextField/TextField";
 import Button from "../../components/Button/Button";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import useAuth from "../../hooks/useAuth";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../api/services/auth";
 
 const Login = () => {
+  const { setAccessToken, authState } = useAuth();
+
+  useEffect(() => {
+    if (authState.accessToken) {
+      navigate("/");
+    }
+  }, []);
+
+  const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
@@ -14,8 +28,15 @@ const Login = () => {
     password: Yup.string().required("Requerido"),
   });
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    const response = await login(values.email, values.password);
+
+    console.log(response);
+
+    if (response.status === 201) {
+      setAccessToken(response.data.data.accessToken);
+      navigate("/");
+    }
   };
 
   const onInputError = (error, touched) => {
@@ -28,7 +49,7 @@ const Login = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       {({
         values,
