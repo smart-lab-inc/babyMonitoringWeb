@@ -51,7 +51,7 @@ function Navbar() {
               >
                 <Menu.Items
                   static
-                  className="absolute right-0 mt-40 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  className="absolute z-40 right-0 mt-40 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                   <div className="py-1">
                     {navItems.map((item) => (
