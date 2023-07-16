@@ -2,8 +2,13 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import TextField from "../../components/TextField/TextField";
 import Button from "../../components/Button/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { create } from "../../api/services/user";
+import routes from "../../consts/routes";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const initialValues = {
     first_name: "",
     last_name: "",
@@ -24,9 +29,16 @@ const Register = () => {
     password: Yup.string().required("Requerido"),
   });
 
-  const handleSubmit = (values) => {
-    console.log(values);
-  };
+  const handleSubmit = async (values) => {
+    const response = await create(values.email, values.password, values.first_name, values.last_name, values.phone);
+
+    if (response.statusCode == 201) {
+      console.log('Usuario creado');
+      navigate(routes.login);
+    }
+
+    console.error(response.data.message);
+  }
 
   const onInputError = (error, touched) => {
     if (error && touched) {
@@ -144,9 +156,9 @@ const Register = () => {
 
             <p className="text-sm mt-3 font-semibold text-stone-950">
               ¿Ya tienes una cuenta?{" "}
-              <a href="#" className="text-primary-500 underline">
+              <Link to={routes.login} className="text-primary-500 underline">
                 Inicia sesión aquí
-              </a>
+              </Link>
             </p>
           </div>
         </div>
