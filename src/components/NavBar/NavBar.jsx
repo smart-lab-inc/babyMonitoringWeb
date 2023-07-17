@@ -1,23 +1,43 @@
 import LogoSVG from "../../assets/svg/logo.svg";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import routes from "../../consts/routes";
+import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 function Navbar() {
+  const { authState, logout } = useAuth();
 
-  const navItems = ["Inicio", "Estadísticas", "Registrar monitor", "Cerrar sesión"];
+  const navItems = [
+    "Inicio",
+    "Estadisticas",
+    "Registrar monitor",
+    "Monitores",
+    "Cerrar sesion",
+  ];
+
+  const navRoutes = {
+    Inicio: routes.home,
+    Estadisticas: routes.statistics,
+    "Registrar monitor": routes.addMonitor,
+    Monitores: routes.monitors,
+    "Cerrar sesion": "#",
+  };
 
   return (
     <nav className="bg-white border-gray-200 border-b-2 p-2">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a className="flex items-center">
-          <img
-            src={LogoSVG}
-            width={32}
-            className="h-10 w-full"
-            alt="SmartLab Logo"
-          />
+          <Link to={routes.home} className="mr-2">
+            <img
+              src={LogoSVG}
+              width={32}
+              className="h-10 w-full"
+              alt="SmartLab Logo"
+            />
+          </Link>
           <span className="self-center text-2xl font-semibold whitespace-nowrap">
-            SmartLab
+            Baby Watcher
           </span>
         </a>
         <Menu>
@@ -57,14 +77,16 @@ function Navbar() {
                     {navItems.map((item) => (
                       <Menu.Item key={item}>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <Link
+                            to={navRoutes[item]}
                             className={`${
-                              active ? "bg-gray-100 text-gray-900" : "text-gray-700"
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700"
                             } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
                           >
                             {item}
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                     ))}
@@ -75,12 +97,20 @@ function Navbar() {
                 <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
                   {navItems.map((item) => (
                     <li key={item}>
-                      <a
-                        href="#"
+                      {item !== "Cerrar sesion" ? (
+                        <Link
+                        to={navRoutes[item]}
                         className="text-gray-600 hover:text-gray-900"
                       >
                         {item}
-                      </a>
+                      </Link>) : (
+                        <button
+                        onClick={logout}
+                        className="text-gray-600 hover:text-gray-900"
+                      >
+                        {item}
+                      </button>
+                      )}
                     </li>
                   ))}
                 </ul>

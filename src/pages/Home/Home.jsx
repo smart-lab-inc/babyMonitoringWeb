@@ -4,6 +4,8 @@ import Alert from "../../components/Alert/Alert";
 import Button from "../../components/Button/Button";
 import eyeSVG from "../../assets/svg/eye.svg";
 import chartSVG from "../../assets/svg/bar-chart.svg";
+import { Link } from "react-router-dom";
+import routes from "../../consts/routes";
 
 const Home = () => {
   return (
@@ -39,13 +41,17 @@ const Home = () => {
         />
 
         <div className="py-4 flex flex-col gap-4">
-          <Button primary icon={eyeSVG} label="Observar" size="w-full" />
-          <Button
-            primary
-            icon={chartSVG}
-            label="Ver estadísticas"
-            size="w-full"
-          />
+          <Link to={routes.watchMonitor}>
+            <Button primary icon={eyeSVG} label="Observar" size="w-full" />
+          </Link>
+          <Link to={routes.statistics}>
+            <Button
+              primary
+              icon={chartSVG}
+              label="Ver estadísticas"
+              size="w-full"
+            />
+          </Link>
         </div>
       </div>
     </div>
