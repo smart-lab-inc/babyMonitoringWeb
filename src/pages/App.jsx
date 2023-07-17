@@ -7,6 +7,7 @@ import Statistics from "./Statistics/Statistics";
 import VideoMonitor from "./VideoMonitor/VideoMonitor";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import routes from "../consts/routes";
+import AddMonitor from "./AddMonitor/AddMonitor";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path={routes.home} element={<Home />} />
             <Route path={routes.statistics} element={<Statistics />} />
             <Route path={routes.videoMonitor} element={<VideoMonitor />} />
+            <Route path={routes.addMonitor} element={<AddMonitor />} />
           </Route>
         </Routes>
       </AuthProvider>
