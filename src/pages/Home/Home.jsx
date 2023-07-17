@@ -22,13 +22,13 @@ const Home = () => {
           <div className="w-1/2 h-full grid justify-items-center items-center border-r-2 border-r-black ">
             <div className="flex justify-center items-center flex-col">
               <p className="text-5xl font-bold">25 °C</p>
-              <p className="text-2xl font-semibold m-5">Temperatura</p>
+              <p className="text-2xl font-semibold my-5">Temperatura</p>
             </div>
           </div>
           <div className="w-1/2 h-full grid justify-items-center items-center">
             <div className="flex justify-center items-center flex-col">
               <p className="text-5xl font-bold">25 °C</p>
-              <p className="text-2xl font-semibold m-5">Temperatura</p>
+              <p className="text-2xl font-semibold my-5">Temperatura</p>
             </div>
           </div>
         </div>

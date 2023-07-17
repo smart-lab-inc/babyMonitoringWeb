@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const TextField = ({ type, label, name, value, placeholder, disabled, error, errorText, multiline, rows, width, handleBlur, handleChange }) => {
+const TextField = ({ type, label, name, value, placeholder, disabled, error, errorText, multiline, rows, width, handleBlur, handleChange, maxLength }) => {
   const commonClassNames = `${width} block rounded-md border-0 mt-2 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${error ? "ring-red-600" : "ring-gray-300"
     } outline-none placeholder:text-gray-500 focus:ring-1 focus:ring-inset ${error ? "focus:ring-red-600" : "focus:ring-blue-700"
     } sm:text-sm sm:leading-6 ${disabled && "bg-slate-100"}`;
@@ -35,6 +35,7 @@ const TextField = ({ type, label, name, value, placeholder, disabled, error, err
           disabled={disabled}
           onBlur={handleBlur}
           onChange={handleChange}
+          maxLength={maxLength}
         />
       )}
       {errorText && <p className="mt-2 text-xs text-red-600">{errorText}</p>}
