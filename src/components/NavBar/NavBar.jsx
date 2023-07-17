@@ -6,21 +6,13 @@ import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 function Navbar() {
-  const { authState, logout } = useAuth();
+  const { logout } = useAuth();
 
-  const navItems = [
-    "Inicio",
-    "Estadisticas",
-    "Registrar monitor",
-    "Monitores",
-    "Cerrar sesion",
-  ];
-
-  const navRoutes = {
-    Inicio: routes.home,
-    Estadisticas: routes.statistics,
+  const navItems = {
+    "Inicio": routes.home,
+    "Estadisticas": routes.statistics,
     "Registrar monitor": routes.addMonitor,
-    Monitores: routes.monitors,
+    "Monitores": routes.monitors,
     "Cerrar sesion": "#",
   };
 
@@ -74,11 +66,11 @@ function Navbar() {
                   className="absolute z-40 right-0 mt-40 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                   <div className="py-1">
-                    {navItems.map((item) => (
+                    {Object.keys(navItems).map((item) => (
                       <Menu.Item key={item}>
                         {({ active }) => (
                           <Link
-                            to={navRoutes[item]}
+                            to={navItems[item]}
                             className={`${
                               active
                                 ? "bg-gray-100 text-gray-900"
@@ -95,11 +87,11 @@ function Navbar() {
               </Transition>
               <div className="hidden md:block">
                 <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
-                  {navItems.map((item) => (
+                  {Object.keys(navItems).map((item) => (
                     <li key={item}>
                       {item !== "Cerrar sesion" ? (
                         <Link
-                        to={navRoutes[item]}
+                        to={navItems[item]}
                         className="text-gray-600 hover:text-gray-900"
                       >
                         {item}
