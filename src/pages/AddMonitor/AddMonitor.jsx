@@ -56,9 +56,9 @@ const AddMonitor = () => {
         handleBlur,
         handleSubmit,
       }) => (
-        <div className="h-screen flex flex-col">
+        <>
           <NavBar />
-          <div className="flex flex-col items-center justify-center flex-grow -mt-32 p-4">
+          <div className="flex flex-col items-center justify-center flex-grow mt-24 p-4">
             <div className="flex flex-col items-center justify-center">
               <img src={MonitorSVG} alt="Monitor" className="w-1/3" />
               <p className="z-40 text-3xl font-semibold">Agregar monitor</p>
@@ -104,7 +104,7 @@ const AddMonitor = () => {
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </Formik>
   );

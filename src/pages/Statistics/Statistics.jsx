@@ -3,6 +3,8 @@ import BarsChart from "../../components/Charts/BarChart";
 import LinesChart from "../../components/Charts/LineChart";
 import Button from "../../components/Button/Button";
 import NavBar from "../../components/NavBar/NavBar";
+import { Link } from "react-router-dom";
+import routes from "../../consts/routes";
 
 const Statistics = () => {
   return (
@@ -29,7 +31,9 @@ const Statistics = () => {
           />
         </div>
         <div className="fixed bottom-0 left-0 w-full p-4">
-          <Button label="Salir" size="w-full" />
+          <Link to={routes.home}>
+            <Button label="Salir" size="w-full" />
+          </Link>
         </div>
       </div>
     </>
