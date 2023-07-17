@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api/services/auth";
 import routes from "../../consts/routes";
+import LoginSVG from "../../assets/svg/loginIcon.svg";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { setAccessToken, authState } = useAuth();
@@ -35,7 +37,14 @@ const Login = () => {
     if (response.status === 201) {
       setAccessToken(response.data.data.accessToken);
       navigate(routes.home);
+    } else {
+      displayError("Credenciales invalidas");
     }
+  };
+
+  const displayError = (message) => {
+    const errorsDiv = document.getElementById("errors");
+    errorsDiv.textContent = message;
   };
 
   const onInputError = (error, touched) => {
@@ -59,7 +68,12 @@ const Login = () => {
         handleSubmit,
       }) => (
         <div className="flex font-primary flex-col items-center justify-center h-screen p-4">
-          <p className="z-40 text-3xl font-semibold">Inicia sesión</p>
+          <p className="z-40 text-3xl font-semibold">Hola!</p>
+          <img src={LoginSVG} alt="Login" className="w-1/2 lg:w-1/6" />
+          <p className="text-center text-gray-500">
+            Bienvenido a Baby Watcher App, inicia sesión para continuar y
+            empezar a monitorear a tu bebé.
+          </p>
 
           <div className="w-full max-w-sm mt-6">
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -95,6 +109,7 @@ const Login = () => {
                   <p className="text-red-500 text-sm">{errors.email}</p>
                 )}
               </div>
+              <div id="errors" className="text-red-500 text-sm"></div>
 
               <Button
                 type="submit"
@@ -106,9 +121,9 @@ const Login = () => {
 
             <p className="text-sm mt-3 font-semibold text-stone-950">
               ¿No tienes una cuenta?{" "}
-              <a href="#" className="text-primary-500 underline">
+              <Link to="/register" className="text-primary-500 underline">
                 Registrate aquí
-              </a>
+              </Link>
             </p>
           </div>
         </div>
