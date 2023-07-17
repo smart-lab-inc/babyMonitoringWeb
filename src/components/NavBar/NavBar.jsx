@@ -68,17 +68,21 @@ function Navbar() {
                   <div className="py-1">
                     {Object.keys(navItems).map((item) => (
                       <Menu.Item key={item}>
-                        {({ active }) => (
+                        {item !== "Cerrar sesion" ? (
                           <Link
                             to={navItems[item]}
-                            className={`${
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700"
-                            } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                            className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
                           >
                             {item}
                           </Link>
+                        ) : (
+                          <button
+                            onClick={logout}
+                            className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
+                          >
+                            {item}
+                          </button>
+
                         )}
                       </Menu.Item>
                     ))}
@@ -91,17 +95,18 @@ function Navbar() {
                     <li key={item}>
                       {item !== "Cerrar sesion" ? (
                         <Link
-                        to={navItems[item]}
-                        className="text-gray-600 hover:text-gray-900"
-                      >
-                        {item}
-                      </Link>) : (
+                          to={navItems[item]}
+                          className="text-gray-600 hover:text-gray-900"
+                        >
+                          {item}
+                        </Link>
+                      ) : (
                         <button
-                        onClick={logout}
-                        className="text-gray-600 hover:text-gray-900"
-                      >
-                        {item}
-                      </button>
+                          onClick={logout}
+                          className="text-gray-600 hover:text-gray-900"
+                        >
+                          {item}
+                        </button>
                       )}
                     </li>
                   ))}
