@@ -4,7 +4,7 @@ import Alert from "../../components/Alert/Alert";
 import Button from "../../components/Button/Button";
 import eyeSVG from "../../assets/svg/eye.svg";
 import chartSVG from "../../assets/svg/bar-chart.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import routes from "../../consts/routes";
 
 const Home = () => {
@@ -39,7 +39,6 @@ const Home = () => {
           message="Todo parece estar en orden"
           type="success"
         />
-
         <div className="py-4 flex flex-col gap-4">
           <Link to={routes.watchMonitor}>
             <Button primary icon={eyeSVG} label="Observar" size="w-full" />

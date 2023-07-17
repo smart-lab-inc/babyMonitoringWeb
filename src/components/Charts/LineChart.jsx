@@ -22,12 +22,14 @@ ChartJS.register(
   Filler
 );
 
-const LinesChart = ({ color }) => {
+const LinesChart = ({ color, dataList }) => {
+  console.log(dataList);
+
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
     datasets: [
       {
-        label: "Sales",
+        label: dataList[0].name,
         data: [456, 479, 324, 569, 702, 600],
         borderColor: color,
       },
