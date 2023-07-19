@@ -19,7 +19,7 @@ function Navbar() {
   return (
     <nav className="bg-white border-gray-200 border-b-2 p-2">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a className="flex items-center">
+        <div className="flex items-center">
           <Link to={routes.home} className="mr-2">
             <img
               src={LogoSVG}
@@ -31,7 +31,7 @@ function Navbar() {
           <span className="self-center text-2xl font-semibold whitespace-nowrap">
             Baby Watcher
           </span>
-        </a>
+        </div>
         <Menu>
           {({ open }) => (
             <>

@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     id: null,
     fullName: null,
     email: null,
+    monitorIds: [],
   },
   accessToken: null,
   isAuthenticated: false,
@@ -20,12 +21,13 @@ const AuthProvider = ({ children }) => {
 
     if (accessToken === null) return initialState;
 
-    const { userId: id, fullName, sub: email } = decodeJWT(accessToken);
+    const { userId: id, fullName, sub: email, monitorIds: monitorIds } = decodeJWT(accessToken);
 
     const user = {
       id,
       fullName,
       email,
+      monitorIds,
     };
 
     return {

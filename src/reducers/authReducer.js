@@ -7,12 +7,14 @@ const authReducer = (state = {}, action) => {
         userId: id,
         fullName,
         sub: email,
+        monitorIds
       } = decodeJWT(action.payload);
       
       const user = {
         id,
         fullName,
         email,
+        monitorIds
       };
 
       return {

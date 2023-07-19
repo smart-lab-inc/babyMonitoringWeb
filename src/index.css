@@ -6,3 +6,7 @@
   font-family: Inter;
   src: url("assets/font/InterFont.ttf");
 }
+
+* {
+  font-family: Inter;
+}
