@@ -1,5 +1,6 @@
 const routes = {
   home: "/",
+  monitorDashboard: "/monitor/:id",
   login: "/login",
   register: "/register",
   statistics: "/statistics",
