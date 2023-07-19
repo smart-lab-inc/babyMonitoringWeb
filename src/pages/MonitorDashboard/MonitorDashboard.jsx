@@ -5,30 +5,43 @@ import eyeSVG from "../../assets/svg/eye.svg";
 import chartSVG from "../../assets/svg/bar-chart.svg";
 import { Link, useParams } from "react-router-dom";
 import routes from "../../consts/routes";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import config from "../../config";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const MonitorDashboard = () => {
   const { id } = useParams();
-  const [socket,] = useState(io(`http://localhost:8085/monitoring?token=${localStorage.getItem("accessToken")}&monitorId=${id}`));
+  const [socket,] = useState(io(`${config.websocketURL}/monitoring?token=${localStorage.getItem("accessToken")}&monitorId=${id}`));
   const [temperature, setTemperature] = useState("--");
   const [humidity, setHumidity] = useState("--");
+  const { logout } = useContext(AuthContext);
 
   useEffect(() => {
-    socket.on("newSensorData", (data) => {
-      data.data.map((item) => {
-        if (item.name === "temperature") {
-          setTemperature(item.value);
-        } else if (item.name === "humidity") {
-          setHumidity(item.value);
-        }
-      });
-    });
+
+    socket.on("error", handleErrorSocket);
+
+    socket.on("newSensorData", handleNewSensorData);
 
     return () => {
       socket.off("newSensorData");
+      socket.off("error");
     }
   }, [socket, temperature, humidity]);
+
+  const handleErrorSocket = () => {
+    logout();
+  };
+
+  const handleNewSensorData = (data) => {
+    data.data.map((item) => {
+      if (item.name === "temperature") {
+        setTemperature(item.value);
+      } else if (item.name === "humidity") {
+        setHumidity(item.value);
+      }
+    })
+  };
 
   return (
     <div className="font-primary">
