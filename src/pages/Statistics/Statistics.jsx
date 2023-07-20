@@ -55,8 +55,8 @@ const Statistics = () => {
     const response = await get(
       selectedMonitor,
       "",
-      "2023-07-17T04:12:01.658",
-      "2023-07-17T05:12:01.658"
+      startTimeStamp,
+      endTimeStamp
     );
     console.log(response);
 
