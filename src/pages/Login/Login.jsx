@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api/services/auth";
 import routes from "../../consts/routes";
-import LoginSVG from "../../assets/svg/loginIcon.svg";
+import LoginSVG from "../../assets/svg/loginIcon2.svg";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -68,12 +68,9 @@ const Login = () => {
         handleSubmit,
       }) => (
         <div className="flex font-primary flex-col items-center justify-center h-screen p-4">
-          <p className="z-40 text-3xl font-semibold">Hola!</p>
-          <img src={LoginSVG} alt="Login" className="w-1/2 lg:w-1/6" />
-          <p className="text-center text-gray-500">
-            Bienvenido a Baby Watcher App, inicia sesión para continuar y
-            empezar a monitorear a tu bebé.
-          </p>
+          <p className="text-3xl font-bold text-stone-950">Iniciar sesion</p>
+          <img src={LoginSVG} alt="Login" className="w-full md:w-3/6 lg:w-1/3" />
+          
 
           <div className="w-full max-w-sm mt-6">
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>

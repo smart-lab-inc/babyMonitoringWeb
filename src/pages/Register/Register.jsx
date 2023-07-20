@@ -5,8 +5,7 @@ import Button from "../../components/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { create } from "../../api/services/user";
 import routes from "../../consts/routes";
-import RegisterSVG from "../../assets/svg/registerIcon.svg"
-;
+import RegisterSVG from "../../assets/svg/logo.svg";
 const Register = () => {
   const navigate = useNavigate();
 
@@ -31,12 +30,18 @@ const Register = () => {
   });
 
   const handleSubmit = async (values) => {
-    const response = await create(values.email, values.password, values.first_name, values.last_name, values.phone);
+    const response = await create(
+      values.email,
+      values.password,
+      values.first_name,
+      values.last_name,
+      values.phone
+    );
 
     if (response.status == 201) {
       navigate(routes.login);
     }
-  }
+  };
 
   const onInputError = (error, touched) => {
     if (error && touched) {
@@ -60,7 +65,11 @@ const Register = () => {
       }) => (
         <div className="flex font-primary flex-col items-center justify-center h-screen p-4">
           <p className="z-40 text-3xl font-semibold">Regístrate</p>
-          <img src={RegisterSVG} alt="Register" className="w-1/3 lg:w-1/6" />
+
+          <img
+            src={RegisterSVG}
+            className="absolute -z-10 opacity-10  w-full lg:w-1/2 sm:w-1/2"
+          />
 
           <div className="w-full max-w-sm mt-6">
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
