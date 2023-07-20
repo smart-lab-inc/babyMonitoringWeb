@@ -9,6 +9,7 @@ import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import routes from "../consts/routes";
 import AddMonitor from "./AddMonitor/AddMonitor";
 import Home from "./Home/Home";
+import StatisticsDetails from "./StatisticsDetails/StatisticsDetails";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path={routes.home} element={<Home />} />
             <Route path={routes.monitorDashboard} element={<MonitorDashboard />} />
             <Route path={routes.statistics} element={<Statistics />} />
+            <Route path={routes.statisticsDetail} element={<StatisticsDetails />} />
             <Route path={routes.videoMonitor} element={<VideoMonitor />} />
             <Route path={routes.addMonitor} element={<AddMonitor />} />
           </Route>

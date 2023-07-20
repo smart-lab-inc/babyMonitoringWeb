@@ -11,6 +11,7 @@ import routes from "../../consts/routes";
 import { get } from "../../api/services/sensorData";
 import ChartTitles from "../../consts/ChartTitles";
 import { getStartAndEndHour } from "../../utils/date";
+import { useNavigate, generatePath } from "react-router-dom";
 
 const Statistics = () => {
   const { authState } = useAuth();
@@ -20,14 +21,16 @@ const Statistics = () => {
   const [selectedType, setSelectedType] = useState("bar");
   const [chartData, setChartData] = useState({});
 
+  const navigate = useNavigate();
+
   const monitorIds = authState.user.monitorIds || [];
 
   const { startTimeStamp, endTimeStamp } = getStartAndEndHour();
 
   const chartTypes = {
-    "Barras": "bar",
-    "Linea": "line",
-  };  
+    Barras: "bar",
+    Linea: "line",
+  };
   const types = ["Barras", "Linea"];
 
   useEffect(() => {
@@ -39,7 +42,6 @@ const Statistics = () => {
       setIsLoading(true);
       fetchData();
     }
-
   }, [selectedMonitor, selectedType]);
 
   useEffect(() => {
@@ -53,9 +55,10 @@ const Statistics = () => {
     const response = await get(
       selectedMonitor,
       "",
-      startTimeStamp,
-      endTimeStamp
+      "2023-07-17T04:12:01.658",
+      "2023-07-17T05:12:01.658"
     );
+    console.log(response);
 
     setData(response.data.data);
   };
@@ -114,6 +117,7 @@ const Statistics = () => {
                         color={"#3056D3"}
                       />
                     }
+                    onClick={() => {navigate(generatePath(routes.statisticsDetail, {id: selectedMonitor}))}}
                     title={ChartTitles[chartType]}
                   />
                 );
