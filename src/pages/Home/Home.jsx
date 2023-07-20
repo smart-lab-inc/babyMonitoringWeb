@@ -2,13 +2,41 @@ import MonitorCard from "../../components/MonitorCard/MonitorCard";
 import Navbar from "../../components/NavBar/NavBar";
 import useAuth from "../../hooks/useAuth";
 import StarsSVG from "../../assets/svg/stars.svg";
+import { list } from "../../api/services/monitor";
+import { useEffect, useState } from "react";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Home = () => {
   const { authState } = useAuth();
+  const userId = authState.user.id;
 
-  const monitorIds = authState.user.monitorIds || [];
+  const [monitorsData, setMonitorsData] = useState([]);
+
   const userFullName = authState.user.fullName || "";
-  let monitorIndex = 0;
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const response = await list(userId);
+
+    if (response.status === 200) {
+      setMonitorsData(response.data.data);
+      return;
+    }
+
+  };
+
+  const renderMonitorList = () => (
+    <div className="flex justify-center">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 w-3/4 mb-10">
+        {monitorsData.map((monitor, key) => (
+          <MonitorCard monitorId={monitor.id} key={monitor.id} monitorIndex={++key} />
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div className="font-primary">
@@ -22,26 +50,15 @@ const Home = () => {
       </div>
       <div className="text-center items-center justify-center h-screen p-4">
         <p className="text-2xl font-semibold m-5">Monitores</p>
-        {monitorIds?.length > 0 ? (
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 w-3/4 mb-10">
-              {monitorIds.map((monitorId) => {
-                monitorIndex++;
-                return (
-                  <MonitorCard
-                    monitorId={monitorId}
-                    key={monitorId}
-                    monitorIndex={monitorIndex}
-                  />
-                );
-              })}
+
+
+        {monitorsData.length > 0 ?
+          renderMonitorList()
+          : (
+            <div className="col-span-3 flex justify-center items-center">
+              <Spinner />
             </div>
-          </div>
-        ) : (
-          <div className="flex justify-center">
-            <p className="text-xl font-semibold m-5">No hay monitores</p>
-          </div>
-        )}
+          )}
       </div>
     </div>
   );
