@@ -1,67 +1,131 @@
+import React, { useEffect, useState } from "react";
 import StatisticsCard from "../../components/StatisticsCard/StatisticsCard";
-import BarsChart from "../../components/Charts/BarChart";
-import LinesChart from "../../components/Charts/LineChart";
-import Button from "../../components/Button/Button";
+import Chart from "../../components/Charts/Chart";
+import useAuth from "../../hooks/useAuth";
+import Spinner from "../../components/Spinner/Spinner";
+import Dropdown from "../../components/Dropdown/Dropdown";
 import NavBar from "../../components/NavBar/NavBar";
+import Button from "../../components/Button/Button";
 import { Link } from "react-router-dom";
 import routes from "../../consts/routes";
 import { get } from "../../api/services/sensorData";
-import { useEffect, useState } from "react";
+import ChartTitles from "../../consts/ChartTitles";
+import { getStartAndEndHour } from "../../utils/date";
 
 const Statistics = () => {
-  const now = new Date();
-  const startTime = new Date(now.getTime() - 7 * 60 * 60 * 1000);
-  const endTime = new Date(now.getTime() - 6 * 60 * 60 * 1000);
+  const { authState } = useAuth();
+  const [selectedMonitor, setSelectedMonitor] = useState("");
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedType, setSelectedType] = useState("bar");
+  const [chartData, setChartData] = useState({});
 
-  const startTimestamp = startTime.toJSON().slice(0, -1);
-  const endTimestamp = endTime.toJSON().slice(0, -1);
+  const monitorIds = authState.user.monitorIds || [];
 
-  const [data, setData] = useState([]);
+  const { startTimeStamp, endTimeStamp } = getStartAndEndHour();
+
+  const chartTypes = {
+    "Barras": "bar",
+    "Linea": "line",
+  };  
+  const types = ["Barras", "Linea"];
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await get(
-        "64ac22086c03245aaec1700a",
-        "",
-        "2023-07-17T04:12:01.658",
-        "2023-07-17T05:12:01.658"
-      );
-      setData(response.data.data);
-      console.log(response);
+    setSelectedMonitor(selectedMonitor || monitorIds[0]);
+  }, [monitorIds, selectedMonitor]);
+
+  useEffect(() => {
+    if (selectedMonitor) {
+      setIsLoading(true);
+      fetchData();
     }
-    fetchData();
-  }, []);
+
+  }, [selectedMonitor, selectedType]);
+
+  useEffect(() => {
+    if (data) {
+      setChartData(data);
+      setIsLoading(false);
+    }
+  }, [data]);
+
+  const fetchData = async () => {
+    const response = await get(
+      selectedMonitor,
+      "",
+      startTimeStamp,
+      endTimeStamp
+    );
+
+    setData(response.data.data);
+  };
 
   return (
     <>
       <NavBar />
       <div className="text-center items-center justify-center h-screen p-4">
         <p className="text-3xl font-semibold m-5">Estadísticas</p>
-        {data && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 justify-items-center pb-16">
-            <StatisticsCard Chart={<BarsChart dataList={data.movement} />} title="MOVIMIENTO" />
-
-            <StatisticsCard
-              Chart={
-                <LinesChart color={"#2D9CDB"} dataList={data.temperature} />
-              }
-              title="TEMPERATURA"
+        {monitorIds?.length > 0 ? (
+          <div className="flex justify-between">
+            <Dropdown
+              text="Seleccionar grafica"
+              data={types}
+              setSelected={setSelectedType}
+              itemName={"Tipo"}
             />
-
-            <StatisticsCard
-              Chart={<LinesChart color={"#EB5757"} dataList={data.humidity} />}
-              title="HUMEDAD"
-            />
-
-            <StatisticsCard
-              Chart={<LinesChart color={"#F2994A"} dataList={data.sound}/>}
-              title="AUDIO"
+            <Dropdown
+              text="Seleccionar monitor"
+              data={monitorIds}
+              setSelected={setSelectedMonitor}
+              itemName={"Monitor"}
             />
           </div>
+        ) : (
+          <div className="flex justify-center">
+            <p className="text-xl font-semibold m-5">No hay monitores</p>
+          </div>
         )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 justify-items-center pb-16">
+          {isLoading ? (
+            <div className="col-span-3 flex justify-center items-center">
+              <Spinner />
+            </div>
+          ) : chartData &&
+            Object.keys(chartData).length > 0 &&
+            Object.values(chartData).every(
+              (dataList) => dataList.length === 0
+            ) ? (
+            <div className="col-span-3 flex justify-center items-center">
+              <p className="text-xl font-semibold m-5">No hay datos</p>
+            </div>
+          ) : isLoading ? (
+            <Spinner />
+          ) : (
+            Object.entries(chartData).map(([chartType, dataList], index) => {
+              if (dataList.length > 0) {
+                return (
+                  <StatisticsCard
+                    key={index}
+                    Chart={
+                      <Chart
+                        type={chartTypes[selectedType]}
+                        dataList={dataList}
+                        color={"#3056D3"}
+                      />
+                    }
+                    title={ChartTitles[chartType]}
+                  />
+                );
+              }
+              return null;
+            })
+          )}
+        </div>
+
         <div className="fixed bottom-0 left-0 w-full p-4 flex justify-center">
-          <Link to={routes.home}>
-            <Button label="Salir" size="w-full sm:w-5/12" />
+          <Link to={routes.home} className="w-full sm:w-5/12">
+            <Button label="Salir" size="w-full" />
           </Link>
         </div>
       </div>
