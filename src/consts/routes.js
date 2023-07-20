@@ -8,7 +8,7 @@ const routes = {
   monitors: "/monitors",
   videoMonitor: "/video-monitor",
   addMonitor: "/add-monitor",
-  watchMonitor: "/watch-monitor"
+  watchMonitor: "/monitor/:id/watch",
 };
 
 export default routes;
