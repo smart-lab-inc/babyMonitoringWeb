@@ -12,7 +12,6 @@ function Navbar() {
     "Inicio": routes.home,
     "Estadisticas": routes.statistics,
     "Registrar monitor": routes.addMonitor,
-    "Monitores": routes.monitors,
     "Cerrar sesion": "#",
   };
 

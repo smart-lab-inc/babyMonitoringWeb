@@ -25,6 +25,7 @@ const App = () => {
             <Route path={routes.statisticsDetail} element={<StatisticsDetails />} />
             <Route path={routes.videoMonitor} element={<VideoMonitor />} />
             <Route path={routes.addMonitor} element={<AddMonitor />} />
+            <Route path={routes.watchMonitor} element={<VideoMonitor />} />
           </Route>
         </Routes>
       </AuthProvider>
