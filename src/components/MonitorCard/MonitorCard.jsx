@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, generatePath } from "react-router-dom";
 import Button from "../Button/Button";
 import BabySVG from "../../assets/svg/baby.svg";
+import routes from "../../consts/routes";
 
 const MonitorCard = ({ monitorId, monitorIndex }) => {
   return (
@@ -16,7 +17,11 @@ const MonitorCard = ({ monitorId, monitorIndex }) => {
         </h5>
         <span className="text-sm text-gray-500">{monitorId}</span>
         <div className="flex mt-4 space-x-3 md:mt-6">
-          <Link to={`/monitor/${monitorId}`}>
+          <Link
+            to={generatePath(routes.monitorDashboard, {
+              id: monitorId,
+            })}
+          >
             <Button
               type="button"
               primary={true}
