@@ -8,6 +8,7 @@ import VideoMonitor from "./VideoMonitor/VideoMonitor";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import routes from "../consts/routes";
 import AddMonitor from "./AddMonitor/AddMonitor";
+import Home from "./Home/Home";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path={routes.login} element={<Login />} />
           <Route path={routes.register} element={<Register />} />
           <Route path="/" element={<ProtectedRoute />}>
+            <Route path={routes.home} element={<Home />} />
             <Route path={routes.monitorDashboard} element={<MonitorDashboard />} />
             <Route path={routes.statistics} element={<Statistics />} />
             <Route path={routes.videoMonitor} element={<VideoMonitor />} />
