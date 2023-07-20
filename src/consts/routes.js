@@ -4,7 +4,7 @@ const routes = {
   login: "/login",
   register: "/register",
   statistics: "/statistics",
-  // statisticsDetail: "/statistics/:id",
+  statisticsDetail: "monitor/:id/statistics",
   monitors: "/monitors",
   videoMonitor: "/video-monitor",
   addMonitor: "/add-monitor",
