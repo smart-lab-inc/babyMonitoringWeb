@@ -17,11 +17,7 @@ const MonitorCard = ({ monitorId, monitorIndex }) => {
         </h5>
         <span className="text-sm text-gray-500">{monitorId}</span>
         <div className="flex mt-4 space-x-3 md:mt-6">
-          <Link
-            to={generatePath(routes.monitorDashboard, {
-              id: monitorId,
-            })}
-          >
+          <Link to={generatePath(routes.monitorDashboard, { id: monitorId })}>
             <Button
               type="button"
               primary={true}
