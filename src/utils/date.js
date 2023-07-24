@@ -8,7 +8,7 @@ export const getHour = (date) => {
 
 export const getStartAndEndHour = () => {
   const now = new Date();
-  const startTimeStamp = new Date(now.getTime() - 1 * 60 * 60 * 1000)
+  const startTimeStamp = new Date(now.getTime() - 7 * 60 * 60 * 1000)
     .toJSON()
     .slice(0, -1);
 
