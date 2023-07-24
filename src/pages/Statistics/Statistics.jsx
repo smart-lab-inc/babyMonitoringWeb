@@ -52,6 +52,7 @@ const Statistics = () => {
   }, [data]);
 
   const fetchData = async () => {
+    console.log(startTimeStamp, endTimeStamp);
     const response = await get(
       selectedMonitor,
       "",
@@ -117,7 +118,7 @@ const Statistics = () => {
                         color={"#3056D3"}
                       />
                     }
-                    onClick={() => {navigate(generatePath(routes.statisticsDetail, {id: selectedMonitor}))}}
+                    onClick={() => navigate(generatePath(routes.statisticsDetail, { id: selectedMonitor }))}
                     title={ChartTitles[chartType]}
                   />
                 );
